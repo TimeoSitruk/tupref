@@ -1,6 +1,12 @@
 {
   "buildCommand": "echo 'Build complete'",
   "outputDirectory": "public",
+  "rewrites": [
+    {
+      "source": "/api/vote",
+      "destination": "/api/vote.py"
+    }
+  ],
   "functions": {
     "api/*.py": {
       "runtime": "python3.11"

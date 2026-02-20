@@ -21,7 +21,7 @@ def make_pairs(items: list) -> list:
     return pairs
 
 
-def success_response(data: dict, status_code: int = 200) -> tuple:
+def success_response(data: dict, status_code: int = 200) -> dict:
     return {
         'statusCode': status_code,
         'headers': {
@@ -31,10 +31,10 @@ def success_response(data: dict, status_code: int = 200) -> tuple:
             'Access-Control-Allow-Headers': 'Content-Type'
         },
         'body': json.dumps(data)
-    }, status_code
+    }
 
 
-def error_response(error: str, status_code: int = 400) -> tuple:
+def error_response(error: str, status_code: int = 400) -> dict:
     return {
         'statusCode': status_code,
         'headers': {
@@ -42,12 +42,11 @@ def error_response(error: str, status_code: int = 400) -> tuple:
             'Access-Control-Allow-Origin': '*'
         },
         'body': json.dumps({'ok': False, 'error': error})
-    }, status_code
+    }
 
 
-def handler(request) -> tuple:
+def handler(request):
     """Handle HTTP requests for the vote API"""
-    
     # Handle OPTIONS for CORS
     if request.method == 'OPTIONS':
         return {
@@ -58,7 +57,7 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
             'body': ''
-        }, 200
+        }
 
     if request.method != 'POST':
         return error_response('Method not allowed', 405)
@@ -106,7 +105,7 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps(resp)
-        }, 200
+        }
 
     # JOIN_ROOM
     if action == 'join_room':
@@ -133,7 +132,7 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({'ok': True, 'room': room})
-        }, 200
+        }
 
     # GET_STATE
     if action == 'get_state':
@@ -150,7 +149,7 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({'ok': True, 'room': room})
-        }, 200
+        }
 
     # VOTE
     if action == 'vote':
@@ -205,7 +204,7 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({'ok': True, 'room': room})
-        }, 200
+        }
 
     # NEXT
     if action == 'next':
@@ -244,6 +243,6 @@ def handler(request) -> tuple:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({'ok': True, 'room': room})
-        }, 200
+        }
 
     return error_response('unknown action', 400)

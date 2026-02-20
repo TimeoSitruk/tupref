@@ -1,0 +1,9 @@
+{
+  "buildCommand": "echo 'Build complete'",
+  "outputDirectory": "public",
+  "functions": {
+    "api/*.py": {
+      "runtime": "python3.11"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+dist/
+build/
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+.vercel/
+public-deploy.zip
+public-deploy2.zip
+server.py

@@ -1,0 +1,9 @@
+{
+  "name": "tupref",
+  "version": "1.0.0",
+  "description": "Tu préfères - Interactive tournament game",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 3000 --directory public"
+  }
+}
